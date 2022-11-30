@@ -1,24 +1,36 @@
 version: 2.1
 
+orbs:
+  docker: circleci/docker@2.1.4
+
 executors:
-  python:
+  general:
     docker:
       - image: python:3.9
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
+        environment:
+          CI: '1'
 
 commands:
+  setup:
+    description: 'Set up python environment'
+    steps:
+      - run: make setup
   lint:
     description: 'Lint Dockerfile and app source'
     steps:
-      - run: make lint-app
+      - run: |
+          source /tmp/venv/bin/activate
+          make lint-app
   
 jobs:
   build-test:
-    executor: python
+    executor: general
     steps:
       - checkout
+      - setup
       - lint
       # Save workspace for subsequent jobs (i.e. test)
       #- persist_to_workspace:

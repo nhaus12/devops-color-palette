@@ -1,4 +1,4 @@
-app_name=color-palette-api
+app_name=color-palette
 app_port=80
 
 setup:
@@ -11,8 +11,13 @@ install:
 	pip install -r requirements.txt
 
 lint-app:
-	# TODO: install hadolint if not available
+	# Conditional execution based on whether running on CI
+ifeq ($(CI), 1)
+	docker pull hadolint/hadolint
+	docker run --rm -i hadolint/hadolint < Dockerfile
+else
 	hadolint Dockerfile
+endif
 	pylint --disable=R,C,W1203,W1202,W0703 app.py
 
 lint-infra:
