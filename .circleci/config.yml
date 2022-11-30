@@ -1,20 +1,15 @@
 version: 2.1
 
-orbs:
-  docker: circleci/docker@2.1.4
-
 executors:
   general:
     docker:
-      - image: python:3.9
+      - image: cimg/base
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
-        environment:
-          CI: '1'
 
 commands:
-  setup:
+  setup-python:
     description: 'Set up python environment'
     steps:
       - run: make setup
