@@ -12,7 +12,7 @@ install:
 
 lint-app:
 	# Conditional execution based on whether running on CI
-ifeq ($(CI), 1)
+ifeq ($(CI), "true")
 	docker pull hadolint/hadolint
 	docker run --rm -i hadolint/hadolint < Dockerfile
 else
