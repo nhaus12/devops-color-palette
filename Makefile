@@ -4,7 +4,7 @@ app_port=80
 setup:
 	# Install venv if running on CI
 ifeq ($(CI), true)
-	apt install python3.10-venv
+	sudo apt install python3.10-venv
 endif
 	python3 -m venv /tmp/venv
 	. /tmp/venv/bin/activate
