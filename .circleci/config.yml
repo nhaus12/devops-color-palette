@@ -9,16 +9,10 @@ executors:
           password: $DOCKERHUB_PASSWORD
 
 commands:
-  setup:
-    description: 'Set up python environment'
-    steps:
-      - run: make setup
   lint:
     description: 'Lint Dockerfile and app source'
     steps:
-      - run: |
-          . /tmp/venv/bin/activate
-          make lint-app
+      - run: make lint-app
   
 jobs:
   build-test:

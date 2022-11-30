@@ -2,15 +2,12 @@ app_name=color-palette
 app_port=80
 
 setup:
-	# Install venv if running on CI
-ifeq ($(CI), true)
-	sudo apt install python3.10-venv
-endif
+	# Only run on development machines
 	python3 -m venv /tmp/venv
 	. /tmp/venv/bin/activate
 
 install:
-	# Run once python venv is activated
+	# Run once python venv is activated on development machines
 	pip install --upgrade pip &&\
 	pip install -r requirements.txt
 
