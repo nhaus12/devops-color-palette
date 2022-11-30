@@ -9,7 +9,7 @@ executors:
           password: $DOCKERHUB_PASSWORD
 
 commands:
-  setup-python:
+  setup:
     description: 'Set up python environment'
     steps:
       - run: make setup
