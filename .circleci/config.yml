@@ -19,7 +19,6 @@ jobs:
     executor: general
     steps:
       - checkout
-      - setup
       - lint
       # Save workspace for subsequent jobs (i.e. test)
       #- persist_to_workspace:
