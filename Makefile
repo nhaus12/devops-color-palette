@@ -3,7 +3,7 @@ app_port=80
 
 setup:
 	python3 -m venv /tmp/venv
-	source /tmp/venv/bin/activate
+	. /tmp/venv/bin/activate
 
 install:
 	# Run once python venv is activated

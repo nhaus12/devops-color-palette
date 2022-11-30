@@ -22,7 +22,7 @@ commands:
     description: 'Lint Dockerfile and app source'
     steps:
       - run: |
-          source /tmp/venv/bin/activate
+          . /tmp/venv/bin/activate
           make lint-app
   
 jobs:
