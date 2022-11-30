@@ -1,0 +1,33 @@
+version: 2.1
+
+executors:
+  python:
+    docker:
+      - image: python:3.9
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+
+commands:
+  lint:
+    description: 'Lint Dockerfile and app source'
+    steps:
+      - run: make lint-app
+  
+jobs:
+  build-test:
+    executor: python
+    steps:
+      - checkout
+      - lint
+      # Save workspace for subsequent jobs (i.e. test)
+      #- persist_to_workspace:
+      #    root: .
+      #    paths:
+      #      - .
+
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+      - build-test
