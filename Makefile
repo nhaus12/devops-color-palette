@@ -2,6 +2,10 @@ app_name=color-palette
 app_port=80
 
 setup:
+	# Install venv if running on CI
+ifeq ($(CI), true)
+	apt install python3.10-venv
+endif
 	python3 -m venv /tmp/venv
 	. /tmp/venv/bin/activate
 
@@ -11,7 +15,7 @@ install:
 	pip install -r requirements.txt
 
 lint-app:
-	# Conditional execution based on whether running on CI
+	# Pull hadolint Docker image if running on CI
 ifeq ($(CI), true)
 	docker pull hadolint/hadolint
 	docker run --rm -i hadolint/hadolint < Dockerfile
