@@ -29,8 +29,12 @@ build-app:
 	docker build . --tag=$(app_name)
 
 run-app:
+ifeq ($(CI), true)
+	docker run -d -p 8000:$(app_port) --name $(app_name) $(app_name)
+else
 	docker run -d -p 8000:$(app_port) $(app_name)
-
+endif
+	
 test-app:
 	$(MAKE) run-app
 ifeq ($(CI), true)
