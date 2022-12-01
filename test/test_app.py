@@ -2,7 +2,9 @@ import json
 import os
 import requests
 
-if bool(os.getenv('CI')):
+ci = os.getenv('CI')
+print(f"ci variable is!!!: {ci}\n\n\n\n\n")
+if bool(ci):
     PORT = 80
 else:
     PORT = 8000
