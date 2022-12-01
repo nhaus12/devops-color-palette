@@ -7,9 +7,6 @@ setup:
 	. /tmp/venv/bin/activate
 
 install:
-ifeq ($(CI), true)
-	sudo apt install python3-pip
-endif
 	# Run once python venv is activated on development machines
 	pip3 install --upgrade pip &&\
 	pip3 install -r requirements.txt

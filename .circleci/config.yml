@@ -3,7 +3,7 @@ version: 2.1
 executors:
   general:
     docker:
-      - image: cimg/base:current
+      - image: cimg/python:3.9.6
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
