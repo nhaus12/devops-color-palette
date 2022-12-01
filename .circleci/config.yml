@@ -17,6 +17,10 @@ commands:
     description: 'Lint Dockerfile and app source'
     steps:
       - run: make lint-app  
+  build-app:
+    description: 'Build the Docker container with the app'
+    steps:
+      - run: make build-app
 
 jobs:
   build-test:
@@ -26,6 +30,7 @@ jobs:
       - setup_remote_docker
       - install-python-deps
       - lint
+      - build-app
       # Save workspace for subsequent jobs (i.e. test)
       #- persist_to_workspace:
       #    root: .
