@@ -21,6 +21,10 @@ commands:
     description: 'Build the Docker container with the app'
     steps:
       - run: make build-app
+  test-app:
+    description: 'Test application running on local docker container'
+    steps:
+      - run: make test-app
 
 jobs:
   build-test:
