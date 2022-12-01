@@ -7,7 +7,7 @@ setup:
 	. /tmp/venv/bin/activate
 
 install:
-ifeq($(CI), true)
+ifeq ($(CI), true)
 	sudo apt install python3-pip
 endif
 	# Run once python venv is activated on development machines
