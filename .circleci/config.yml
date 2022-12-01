@@ -19,6 +19,7 @@ jobs:
     executor: general
     steps:
       - checkout
+      - setup_remote_docker
       - lint
       # Save workspace for subsequent jobs (i.e. test)
       #- persist_to_workspace:
