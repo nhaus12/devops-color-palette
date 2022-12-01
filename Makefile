@@ -8,8 +8,8 @@ setup:
 
 install:
 	# Run once python venv is activated on development machines
-	pip3 install --root-user-action=ignore --upgrade pip &&\
-	pip3 install --root-user-action=ignore -r requirements.txt
+	pip3 install --upgrade pip &&\
+	pip3 install -r requirements.txt
 
 lint-app:
 	# Pull hadolint Docker image if running on CI
