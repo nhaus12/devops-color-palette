@@ -2,8 +2,7 @@ import json
 import os
 import requests
 
-ci = os.getenv('CI')
-if int(ci) == 1:
+if bool(os.getenv('CI')):
     PORT = 80
 else:
     PORT = 8000
