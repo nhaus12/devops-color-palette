@@ -8,8 +8,8 @@ setup:
 
 install:
 	# Run once python venv is activated on development machines
-	pip3 install --upgrade pip &&\
-	pip3 install -r requirements.txt
+	pip3 install --root-user-action=ignore --upgrade pip &&\
+	pip3 install --root-user-action=ignore -r requirements.txt
 
 lint-app:
 	# Pull hadolint Docker image if running on CI
@@ -29,6 +29,11 @@ build-app:
 	docker build . --tag=$(app_name)
 
 run-app:
-	docker run -p 8000:$(app_port) $(app_name)
+	docker run -d -p 8000:$(app_port) $(app_name)
+
+test-app:
+	$(MAKE) run-app
+	pwd
+	cd test && pytest
 
 all: setup install lint-app lint-infra

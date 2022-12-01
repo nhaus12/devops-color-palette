@@ -14,13 +14,17 @@ pathlib.Path(UPLOAD_FOLDER).mkdir(parents=True, exist_ok=True)
 app = Flask(__name__)
 LOG = create_logger(app)
 
+
+def color_dict_to_json(color_dict):
+    color_dict.pop("wallpaper")
+    color_dict.pop("alpha")
+    return json.dumps(color_dict)
+
+
 def gen_color_palette(filepath):
-
     palette_dict = pywal.colors.get(filepath)
-    palette_dict.pop("wallpaper")
-    palette_dict.pop("alpha")
-
-    return json.dumps(palette_dict)
+    palette = color_dict_to_json(palette_dict)
+    return palette
 
 
 @app.route("/")
@@ -32,7 +36,7 @@ def index():
 def palette_endpoint():
 
     if not 'image' in request.files:
-        return "[!] Please upload an image\n"
+        return "(!) Please upload an image\n"
     
     file = request.files['image']
     filename = secure_filename(file.filename)
