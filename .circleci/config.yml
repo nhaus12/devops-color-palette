@@ -9,17 +9,22 @@ executors:
           password: $DOCKERHUB_PASSWORD
 
 commands:
+  install-python-deps:
+    description: 'Install python dependencies'
+    steps:
+      - run: make install
   lint:
     description: 'Lint Dockerfile and app source'
     steps:
-      - run: make lint-app
-  
+      - run: make lint-app  
+
 jobs:
   build-test:
     executor: general
     steps:
       - checkout
       - setup_remote_docker
+      - install-python-deps
       - lint
       # Save workspace for subsequent jobs (i.e. test)
       #- persist_to_workspace:
