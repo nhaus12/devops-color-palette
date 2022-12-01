@@ -36,10 +36,10 @@ else
 endif
 	
 test-app:
-	$(MAKE) run-app
 ifeq ($(CI), true)
 	docker exec color-palette pytest
 else
+	$(MAKE) run-app
 	pytest
 endif
 
