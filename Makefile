@@ -33,7 +33,10 @@ run-app:
 
 test-app:
 	$(MAKE) run-app
-	pwd
-	cd test && pytest
+ifeq ($(CI), true)
+	docker exec color-palette pytest
+else
+	pytest
+endif
 
 all: setup install lint-app lint-infra
